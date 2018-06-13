@@ -6,5 +6,4 @@ function Frame(height, width) {
   this.board = new Board(height, width);
 }
 
-let frame = new Frame(2, 2);
-console.log(frame);
+module.exports.Frame = Frame;
