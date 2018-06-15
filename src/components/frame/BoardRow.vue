@@ -4,9 +4,7 @@
     </div>
     <Tile v-for="column in Array.from(Array(width).keys())"
           :owner="board.getOwner(tiles[column].x_pos, tiles[column].y_pos)"
-          :count="tiles[column].count"
-          :x_pos="tiles[column].x_pos"
-          :y_pos="tiles[column].y_pos">
+          :tile="tiles[column]">
     </Tile>
   </div>
 </template>

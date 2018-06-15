@@ -2,7 +2,7 @@
   <div class="tile-container"
        :style="{'background-color': color}"
        @click="click()">
-    <h1>{{count}}</h1>
+    <h1>{{tile.count}}</h1>
   </div>
 </template>
 
@@ -14,21 +14,14 @@
       owner: {
         required: true
       },
-      x_pos: {
-        type: Number,
-        required: true
-      },
-      y_pos: {
-        type: Number,
-        required: true
-      },
-      count: {
-        type: Number,
+      tile: {
+        type: Object,
         required: true
       }
     },
     computed: {
       ...mapGetters([
+        'current_player',
         'attacker'
       ]),
       color() {
@@ -37,31 +30,21 @@
         } else {
           return this.owner.color;
         }
-      },
-      hovering_color() {
-        if (this.owner === this.attacker) {
-          return 'lightblue';
-        } else {
-          return this.color;
-        }
       }
     },
     methods: {
       click() {
-        if (this.attacker === this.owner) { //todo : use another condition
+        if (this.current_player === this.owner && this.attacker === null) {
           this.attackFromThisTile();
-        } else {
+        } else if (this.current_player !== this.owner && this.attacker !== null) {
           this.attackThisTile();
         }
       },
       attackFromThisTile() {
-        this.$store.dispatch('setAttacker', {
-          x_pos: this.x_pos,
-          y_pos: this.y_pos
-        })
+        this.$store.dispatch('setAttacker', this.tile);
       },
       attackThisTile() {
-        // TODO:
+        this.$store.dispatch('setAttackee', this.tile);
       }
     }
   }

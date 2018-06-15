@@ -19,11 +19,11 @@ const actions = {
   setCurrentPlayer: ({commit}, new_current_player) => {
     commit('setCurrentPlayer', new_current_player);
   },
-  setAttacker: ({commit}, payload) => {
-    commit('setAttacker', payload);
+  setAttacker: ({commit}, tile) => {
+    commit('setAttacker', tile);
   },
-  setAttackee: ({commit}, payload) => {
-    commit('setAttackee', payload);
+  setAttackee: ({commit}, tile) => {
+    commit('setAttackee', tile);
   }
 }
 
@@ -34,17 +34,11 @@ const mutations = {
   setCurrentPlayer: (state, new_current_player) => {
     state.current_player = new_current_player;
   },
-  setAttacker: (state, payload) => {
-    state.attacker = {
-      x_pos: payload.x_pos,
-      y_pos: payload.y_pos,
-    };
+  setAttacker: (state, tile) => {
+    state.attacker = tile;
   },
-  setAttackee: (state, new_attackee) => {
-    state.attackee = {
-      x_pos: payload.x_pos,
-      y_pos: payload.y_pos,
-    };
+  setAttackee: (state, tile) => {
+    state.attackee = tile;
   }
 }
 
