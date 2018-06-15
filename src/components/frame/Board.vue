@@ -1,6 +1,10 @@
 <template>
   <div class="board-container">
-    <BoardRow v-for="row in Array.from(Array(frame.height).keys())" :even_row="row%2 === 0" :tiles="frame.board.tiles[row]" :width="frame.width"></BoardRow>
+    <BoardRow v-for="row in Array.from(Array(frame.height).keys())"
+              :even_row="row%2 === 0"
+              :tiles="frame.board.tiles[row]"
+              :width="frame.width"
+              :board="frame.board"></BoardRow>
   </div>
 </template>
 

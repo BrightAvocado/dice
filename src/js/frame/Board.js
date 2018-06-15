@@ -1,20 +1,21 @@
-import {Tile} from './Tile';
-import {Territory} from './Territory';
-import {Player} from './Player';
+import Tile from './Tile';
+import Territory from './Territory';
+import Player from './Player';
 
-export const Board = function (n_players, height, width) {
-  this.tiles = generateTiles(this, height, width);//list of Tiles
-  this.territories = generateTerritories(n_players, this.tiles)//list of territories
-}
-
-Board.prototype.getOwner = function (tile) {
-  let owner = null;
-  this.territories.forEach((territory) => {
-    if (territory.hasTile(tile.x_pos, tile.y_pos)) {
-      owner = territory.owner;
-    }
-  });
-  return owner;
+class Board {
+  constructor(n_players, height, width) {
+    this.tiles = generateTiles(this, height, width);//list of Tiles
+    this.territories = generateTerritories(n_players, this.tiles)//list of territories
+  }
+  getOwner(x_pos, y_pos) {
+    let owner = null;
+    this.territories.forEach((territory) => {
+      if (territory.hasTile(x_pos, y_pos)) {
+        owner = territory.owner;
+      }
+    });
+    return owner;
+  }
 }
 
 //Return a list of length n_territories containing lists containing the Tiles in each territory
@@ -22,6 +23,8 @@ Board.prototype.getOwner = function (tile) {
 function generateTerritories(n_territories, tiles) {
   let players = generatePlayers(n_territories);//List of players
   let territories = [];
+
+  //Populate territories with n_territories empty territories
   for (let i = 0; i < n_territories; i++) {
     territories.push(new Territory(players[i], []));
   }
@@ -29,9 +32,7 @@ function generateTerritories(n_territories, tiles) {
   for (let x = 0; x < tiles.length; x++) {
     for (let y = 0; y < tiles[x].length; y++) {
       let selected_player_index = Math.ceil(Math.random() * n_territories) - 1;
-      if (typeof selected_player_index === Number) {
-        territories[selected_player_index].addTile(tiles[x][y]);
-      }
+      territories[selected_player_index].addTile(tiles[x][y]);
     }
   }
   return territories;
@@ -44,7 +45,7 @@ function generateTiles(board, height, width) {
   for (let i = 0; i < height; i++) {
     generated_tiles.push([]);
     for (let j = 0; j < width; j++) {
-      generated_tiles[i].push(new Tile(board, i, j));
+      generated_tiles[i].push(new Tile(i, j));
     }
   }
   return generated_tiles;
@@ -58,3 +59,5 @@ function generatePlayers(n_players) {
   }
   return players;
 }
+
+export default Board;

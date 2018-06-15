@@ -1,5 +1,5 @@
 <template>
-  <div  v-if="frame !== null"
+  <div v-if="frame !== null"
         class="frame-container">
     <Board :frame="frame"></Board>
   </div>
@@ -8,21 +8,20 @@
 <script>
   import Board from './Board'
 
-  import {Frame} from '../../js/frame/Frame'
-
-  import {mapGetters} from 'vuex'
+  import Frame from '../../js/frame/Frame'
 
   export default {
-    created() {
-      this.$store.dispatch('setFrame', new Frame(3,3,2));
-    },
-    computed: {
-      ...mapGetters([
-        'frame'
-      ])
+    data() {
+      return {
+        frame: new Frame(4, 3, 2)
+      };
     },
     components: {
       Board
+    },
+    created() {
+      this.$store.dispatch('setPlayers', this.frame.getPlayers());
+      this.$store.dispatch('setCurrentPlayer', this.frame.getPlayers()[0]);
     }
   }
 </script>

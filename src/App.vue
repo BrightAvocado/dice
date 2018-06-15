@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Frame/>
+    <CurrentPlayerDisplay></CurrentPlayerDisplay>
   </div>
 </template>
 
 <script>
 import Frame from './components/frame/Frame'
+import CurrentPlayerDisplay from './components/current_player_display/CurrentPlayerDisplay'
 
 export default {
   name: 'App',
   components: {
-    Frame
+    Frame,
+    CurrentPlayerDisplay
   }
 }
 </script>
