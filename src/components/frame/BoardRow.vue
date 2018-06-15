@@ -3,6 +3,7 @@
     <div v-if="even_row" class="empty-space">
     </div>
     <Tile v-for="column in Array.from(Array(width).keys())"
+          :board="board"
           :owner="board.getOwner(tiles[column].x_pos, tiles[column].y_pos)"
           :tile="tiles[column]">
     </Tile>

@@ -17,6 +17,10 @@
       tile: {
         type: Object,
         required: true
+      },
+      board: {
+        type: Object,
+        required: true
       }
     },
     computed: {
@@ -36,6 +40,7 @@
       click() {
         if (this.current_player === this.owner && this.attacker === null) {
           this.attackFromThisTile();
+          console.log(this.board.getSurroundingTiles(this.tile.x_pos, this.tile.y_pos));
         } else if (this.current_player !== this.owner && this.attacker !== null) {
           this.attackThisTile();
         }
