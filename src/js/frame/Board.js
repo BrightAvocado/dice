@@ -1,10 +1,20 @@
-let Tile = require('./Tile').Tile;
-let Territory = require('./Territory').Territory;
-let Player = require('./Player').Player;
+import {Tile} from './Tile';
+import {Territory} from './Territory';
+import {Player} from './Player';
 
 export const Board = function (n_players, height, width) {
   this.tiles = generateTiles(this, height, width);//list of Tiles
   this.territories = generateTerritories(n_players, this.tiles)//list of territories
+}
+
+Board.prototype.getOwner = function (tile) {
+  let owner = null;
+  this.territories.forEach((territory) => {
+    if (territory.hasTile(tile.x_pos, tile.y_pos)) {
+      owner = territory.owner;
+    }
+  });
+  return owner;
 }
 
 //Return a list of length n_territories containing lists containing the Tiles in each territory

@@ -1,6 +1,6 @@
-let Tile = require('./Tile').Tile;
+import {Tile} from './Tile'
 
-function Territory (owner, tiles) {
+export const Territory = function (owner, tiles) {
   this.owner = owner;//Owner of the territory
   this.tiles = tiles;//List of the tiles that are in this territory
 }
@@ -18,5 +18,3 @@ Territory.prototype.hasTile = function(x_pos, y_pos) {
   });
   return has_tile;
 }
-
-module.exports.Territory = Territory;

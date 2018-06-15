@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Frame from './components/Frame'
+import Frame from './components/frame/Frame'
 
 export default {
   name: 'App',
