@@ -20,6 +20,8 @@ class Board {
     let even_row = x_pos%2 === 0;//The first row from the top is considered to be an even row
     if (even_row === true) {
       return this._getSurroundingTilesOnEvenRow(x_pos, y_pos);
+    } else {
+      return this._getSurroundingTilesOnOddRow(x_pos, y_pos);
     }
   }
   _getSurroundingTilesOnEvenRow(x_pos, y_pos) {
@@ -47,6 +49,45 @@ class Board {
     surrounding_tiles.push({
       x_pos: x_pos + 1,
       y_pos: y_pos + 1
+    });
+
+    let tiles_to_remove = [];
+    for (let surrounding_tile of surrounding_tiles) {
+      if (isTileOutOfBoard(this, surrounding_tile.x_pos, surrounding_tile.y_pos)) {
+        tiles_to_remove.push(surrounding_tile);
+      }
+    }
+
+    for (let tile_to_remove of tiles_to_remove) {
+      surrounding_tiles.splice(surrounding_tiles.indexOf(tile_to_remove), 1);
+    }
+    return surrounding_tiles;
+  }
+  _getSurroundingTilesOnOddRow(x_pos, y_pos) {
+    let surrounding_tiles = [];
+    surrounding_tiles.push({
+      x_pos,
+      y_pos: y_pos + 1
+    });
+    surrounding_tiles.push({
+      x_pos,
+      y_pos: y_pos - 1
+    });
+    surrounding_tiles.push({
+      x_pos: x_pos - 1,
+      y_pos: y_pos - 1
+    });
+    surrounding_tiles.push({
+      x_pos: x_pos - 1,
+      y_pos
+    });
+    surrounding_tiles.push({
+      x_pos: x_pos + 1,
+      y_pos: y_pos - 1
+    });
+    surrounding_tiles.push({
+      x_pos: x_pos + 1,
+      y_pos
     });
 
     let tiles_to_remove = [];
