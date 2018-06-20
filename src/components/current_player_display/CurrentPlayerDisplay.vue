@@ -28,5 +28,6 @@
   .current-player-display-color{
     height: 100px;
     width: 100px;
+    border: 1px solid black;
   }
 </style>
