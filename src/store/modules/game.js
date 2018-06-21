@@ -22,8 +22,12 @@ const actions = {
   },
   nextRound: ({commit, dispatch}) => {
     dispatch('nextPlayer');
-    commit('nextRound');
-  }
+    commit('nextMove');
+  },
+  nextMove: ({commit}) => {
+    commit('nextMove');
+  },
+
 }
 
 const mutations = {
@@ -36,7 +40,7 @@ const mutations = {
   setSurroundingEnemyTiles: (state, surrounding_enemy_tiles) => {
     state.surrounding_enemy_tiles = surrounding_enemy_tiles;
   },
-  nextRound: state => {
+  nextMove: state => {
     state.attacker = null;
     state.attackee = null;
     state.surrounding_enemy_tiles = [];

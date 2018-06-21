@@ -38,11 +38,11 @@ class Board {
     if (attacker_score > attackee_score) { //Attacker wins
       this.seizeTile(attacker, attackee);
     } else { //Attackee wins
-      this.seizeTile(attackee, attacker);
+      attacker.count = 1;
     }
   }
   seizeTile(tile_seizing, tile_seized) {
-    tile_seized.count = Math.max(tile_seizing.count - 1);
+    tile_seized.count = Math.max(tile_seizing.count - 1, 1);
     tile_seizing.count = 1;
     this.getTerritory(this.getOwner(tile_seized.x_pos, tile_seized.y_pos)).removeTile(tile_seized);
     this.getTerritory(this.getOwner(tile_seizing.x_pos, tile_seizing.y_pos)).addTile(tile_seized);

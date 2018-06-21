@@ -42,7 +42,7 @@
     },
     methods: {
       click() {
-        if (this.current_player === this.owner && this.attacker === null) {
+        if (this.current_player === this.owner && this.attacker === null && this.tile.count > 1) {
           this.attackFromThisTile();
         } else if (this.surrounding_enemy_tiles.includes(this.tile) && this.attacker !== null) {
           this.attackThisTile();
@@ -55,7 +55,7 @@
       attackThisTile() {
         this.$store.dispatch('setAttackee', this.tile);
         this.board.attack(this.attacker, this.tile);
-        this.$store.dispatch('nextRound');
+        this.$store.dispatch('nextMove');
       }
     }
   }

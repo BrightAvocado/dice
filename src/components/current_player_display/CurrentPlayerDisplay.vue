@@ -1,8 +1,8 @@
 <template>
   <div class="current-player-display-container">
-    <h2>Current Player :</h2>
-    <div class="current-player-display-color"
-         :style="{'background-color': current_player.color}">
+    <div v-for="player in players"
+         :style="{'background-color': player.color, 'opacity': (player === current_player) ? 1: 0.1}"
+         class="player-square">
     </div>
   </div>
 </template>
@@ -13,6 +13,7 @@
   export default {
     computed: {
       ...mapGetters([
+        'players',
         'current_player'
       ])
     }
@@ -22,10 +23,12 @@
 <style scoped>
   .current-player-display-container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
+    margin: 40px;
   }
-  .current-player-display-color{
+  .player-square{
     height: 100px;
     width: 100px;
     border: 1px solid black;
