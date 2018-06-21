@@ -1,6 +1,6 @@
 class Player {
   constructor() {
-    this.color = "#"+((1<<24)*Math.random()|0).toString(16); // random color
+    this.color = "#"+((1<<13)*Math.random()|0).toString(16); // random color
     this.amount_spare_dice = 5;
   }
   resetAmountSpareDice() {

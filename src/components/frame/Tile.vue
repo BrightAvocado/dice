@@ -29,7 +29,8 @@
         'is_regenerating',
         'current_player',
         'attacker',
-        'surrounding_enemy_tiles'
+        'surrounding_enemy_tiles',
+        'players'
       ]),
       color() {
         if (this.owner === null) {

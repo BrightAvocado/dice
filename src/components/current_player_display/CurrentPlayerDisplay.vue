@@ -3,7 +3,7 @@
     <div v-for="player in players"
          :style="{'background-color': player.color, 'opacity': (player === current_player) ? 1: 0.1}"
          class="player-square">
-         <h3>{{player.amount_spare_dice}}</h3>
+         <h1>{{player.amount_spare_dice}}</h1>
     </div>
   </div>
 </template>
@@ -22,19 +22,19 @@
 </script>
 
 <style scoped>
-  .current-player-display-container{
+  .current-player-display-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     margin: 40px;
   }
-  .player-square{
+  .player-square {
     height: 100px;
     width: 100px;
     border: 1px solid black;
   }
-  .player-square h3 {
+  .player-square h1 {
     color: black;
   }
 </style>
