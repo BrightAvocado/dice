@@ -14,6 +14,14 @@ const actions = {
   },
   setCurrentPlayer: ({commit}, new_current_player) => {
     commit('setCurrentPlayer', new_current_player);
+  },
+  nextPlayer: ({commit, getters}) => {
+    let current_player_index = getters.players.indexOf(getters.current_player);
+    let next_player_index = current_player_index + 1;
+    if (next_player_index >= getters.players.length) {
+      next_player_index = 0;
+    }
+    commit('setCurrentPlayer', getters.players[next_player_index]);
   }
 }
 

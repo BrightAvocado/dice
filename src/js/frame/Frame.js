@@ -1,7 +1,5 @@
 import Board from './Board'
 
-
-
 class Frame {
   constructor(height, width, n_players) {
     this.height = height;

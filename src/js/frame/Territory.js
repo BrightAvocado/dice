@@ -6,6 +6,9 @@ class Territory {
   addTile(tile) {
     this.tiles.push(tile);
   }
+  removeTile(tile) {
+    this.tiles.splice(this.tiles.indexOf(tile), 1);
+  }
   hasTile(x_pos, y_pos) {
     let has_tile = false;
     this.tiles.forEach((tile) => {
