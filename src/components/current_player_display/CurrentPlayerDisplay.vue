@@ -3,6 +3,7 @@
     <div v-for="player in players"
          :style="{'background-color': player.color, 'opacity': (player === current_player) ? 1: 0.1}"
          class="player-square">
+         <h3>{{player.amount_spare_dice}}</h3>
     </div>
   </div>
 </template>
@@ -32,5 +33,8 @@
     height: 100px;
     width: 100px;
     border: 1px solid black;
+  }
+  .player-square h3 {
+    color: black;
   }
 </style>

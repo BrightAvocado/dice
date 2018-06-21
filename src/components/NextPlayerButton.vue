@@ -8,8 +8,14 @@
   import {mapGetters} from 'vuex';
 
   export default {
+    computed: {
+      ...mapGetters([
+        'current_player'
+      ])
+    },
     methods: {
       click() {
+        this.current_player.resetAmountSpareDice();
         this.$store.dispatch('nextRound');
       }
     }

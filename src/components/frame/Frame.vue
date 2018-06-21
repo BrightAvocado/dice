@@ -13,7 +13,7 @@
   export default {
     data() {
       return {
-        frame: new Frame(4, 3, 2)
+        frame: new Frame(5, 5, 4)
       };
     },
     components: {

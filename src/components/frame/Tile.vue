@@ -26,6 +26,7 @@
     },
     computed: {
       ...mapGetters([
+        'is_regenerating',
         'current_player',
         'attacker',
         'surrounding_enemy_tiles'
@@ -42,10 +43,21 @@
     },
     methods: {
       click() {
-        if (this.current_player === this.owner && this.attacker === null && this.tile.count > 1) {
-          this.attackFromThisTile();
-        } else if (this.surrounding_enemy_tiles.includes(this.tile) && this.attacker !== null) {
-          this.attackThisTile();
+        if (this.is_regenerating) {
+          if (this.current_player === this.owner) {
+            if (this.current_player.amount_spare_dice > 1) {
+              this.current_player.incrementTileCount(this.tile);
+            } else {
+              this.current_player.incrementTileCount(this.tile);
+              this.$store.dispatch('toggleRegeneration');
+            }
+          }
+        } else {
+          if (this.current_player === this.owner && this.tile.count > 1) {
+            this.attackFromThisTile();
+          } else if (this.surrounding_enemy_tiles.includes(this.tile) && this.attacker !== null) {
+            this.attackThisTile();
+          }
         }
       },
       attackFromThisTile() {
@@ -67,10 +79,11 @@
     width: 100px;
     border: 1px solid black;
     color: black;
+    user-select: none;
   }
   .tile-container:hover {
     cursor: pointer;
-    background-color: lightblue !important;
+    opacity: 0.8 !important;
   }
   .tile-container h2 {
     margin-bottom: 0;

@@ -1,16 +1,21 @@
 const state = {
+  is_regenerating: true,
   attacker: null, // The Tile attacking
   attackee: null, // The Tile being attacked
   surrounding_enemy_tiles: []
 }
 
 const getters = {
+  is_regenerating: state => state.is_regenerating,
   attacker: state => state.attacker,
   attackee: state => state.attackee,
   surrounding_enemy_tiles: state => state.surrounding_enemy_tiles,
 }
 
 const actions = {
+  toggleRegeneration: ({commit}) => {
+    commit('toggleRegeneration');
+  },
   setAttacker: ({commit}, tile) => {
     commit('setAttacker', tile);
   },
@@ -22,15 +27,21 @@ const actions = {
   },
   nextRound: ({commit, dispatch}) => {
     dispatch('nextPlayer');
+    dispatch('toggleRegeneration');
     commit('nextMove');
   },
-  nextMove: ({commit}) => {
-    commit('nextMove');
+  nextMove: ({dispatch}) => {
+    dispatch('setAttacker', null);
+    dispatch('setAttackee', null);
+    dispatch('setSurroundingEnemyTiles', []);
   },
 
 }
 
 const mutations = {
+  toggleRegeneration: state => {
+    state.is_regenerating = !state.is_regenerating;
+  },
   setAttacker: (state, tile) => {
     state.attacker = tile;
   },

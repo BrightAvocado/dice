@@ -1,11 +1,3 @@
-function isTileOutOfBoard(tiles, x_pos, y_pos) {
-  return tiles.find(board_tile => board_tile.x_pos === x_pos && board_tile.y_pos === y_pos) === undefined;
-}
-
-function getTile(tiles, x_pos, y_pos) {
-  return tiles.find(tile => tile.x_pos === x_pos && tile.y_pos === y_pos);
-}
-
 export function getSurroundingTiles(tiles, x_pos, y_pos) {
   let even_row = x_pos%2 === 0;//The first row from the top is considered to be an even row
   if (even_row === true) {
@@ -13,6 +5,14 @@ export function getSurroundingTiles(tiles, x_pos, y_pos) {
   } else {
     return getSurroundingTilesOnOddRow(tiles, x_pos, y_pos);
   }
+}
+
+function isTileOutOfBoard(tiles, x_pos, y_pos) {
+  return tiles.find(board_tile => board_tile.x_pos === x_pos && board_tile.y_pos === y_pos) === undefined;
+}
+
+function getTile(tiles, x_pos, y_pos) {
+  return tiles.find(tile => tile.x_pos === x_pos && tile.y_pos === y_pos);
 }
 
 //Return a list of the Tiles surrounding the `tile`
