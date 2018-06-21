@@ -2,13 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import players from './modules/players'
-import board from './modules/board'
+import game from './modules/game'
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   modules: {
     players,
-    board
+    game
   }
 })

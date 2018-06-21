@@ -6,19 +6,17 @@ function getTile(tiles, x_pos, y_pos) {
   return tiles.find(tile => tile.x_pos === x_pos && tile.y_pos === y_pos);
 }
 
-export function getSurroundingTiles(tiles, tile) {
-  let even_row = tile.x_pos%2 === 0;//The first row from the top is considered to be an even row
+export function getSurroundingTiles(tiles, x_pos, y_pos) {
+  let even_row = x_pos%2 === 0;//The first row from the top is considered to be an even row
   if (even_row === true) {
-    return getSurroundingTilesOnEvenRow(tiles, tile);
+    return getSurroundingTilesOnEvenRow(tiles, x_pos, y_pos);
   } else {
-    return getSurroundingTilesOnOddRow(tiles, tile);
+    return getSurroundingTilesOnOddRow(tiles, x_pos, y_pos);
   }
 }
 
 //Return a list of the Tiles surrounding the `tile`
-function getSurroundingTilesOnEvenRow(tiles, tile) {
-  let x_pos = tile.x_pos;
-  let y_pos = tile.y_pos;
+function getSurroundingTilesOnEvenRow(tiles, x_pos, y_pos) {
   let positions_surrounding_tiles = [];
   positions_surrounding_tiles.push({
     x_pos,
@@ -60,9 +58,7 @@ function getSurroundingTilesOnEvenRow(tiles, tile) {
   return surrounding_tiles;
 }
 
-function getSurroundingTilesOnOddRow(tiles, tile) {
-  let x_pos = tile.x_pos;
-  let y_pos = tile.y_pos;
+function getSurroundingTilesOnOddRow(tiles, x_pos, y_pos) {
   let positions_surrounding_tiles = [];
   positions_surrounding_tiles.push({
     x_pos,

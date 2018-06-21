@@ -1,5 +1,3 @@
-import {getSurroundingTiles} from '../helper/tiles_processing'
-
 const state = {
   attacker: null, // The Tile attacking
   attackee: null, // The Tile being attacked

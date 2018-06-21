@@ -20,6 +20,11 @@
         type: Object,
         required: true
       }
+    },
+    created() {
+      console.log('surrounding tiles:', this.frame.board.getSurroundingTiles(0, 0));
+      console.log('surroudning enemy tiles:', this.frame.board.getSurroundingEnemyTiles(0, 0));
+      
     }
   }
 </script>
